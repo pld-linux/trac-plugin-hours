@@ -11,6 +11,7 @@ Source0:	trachoursplugin.zip
 # Source0-md5:	7f1c462b4fbcc4a52aceaf1bf66de6d4
 URL:		http://trac-hacks.org/wiki/TracHoursPlugin
 BuildRequires:	python-devel
+BuildRequires:	unzip
 Requires:	python >= 1:2.4
 Requires:	python-dateutil >= 1.3-4
 Requires:	python-feedparser
