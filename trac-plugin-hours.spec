@@ -3,7 +3,7 @@
 Summary:	Trac plugin to track hours spent on tickets
 Name:		trac-plugin-hours
 Version:	0.3.1
-Release:	1
+Release:	2
 License:	BSD-like
 Group:		Applications/WWW
 # Source0Download:	http://trac-hacks.org/changeset/latest/trachoursplugin?old_path=/&filename=trachoursplugin&format=zip
