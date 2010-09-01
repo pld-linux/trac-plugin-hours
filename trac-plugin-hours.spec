@@ -1,14 +1,13 @@
-%define		trac_ver	0.11
+%define		trac_ver	0.12
 %define		plugin		trachours
 Summary:	Trac plugin to track hours spent on tickets
 Name:		trac-plugin-hours
-Version:	0.3.1
-Release:	2
+Version:	0.5.2
+Release:	1
 License:	BSD-like
 Group:		Applications/WWW
-# Source0Download:	http://trac-hacks.org/changeset/latest/trachoursplugin?old_path=/&filename=trachoursplugin&format=zip
-Source0:	trachoursplugin.zip
-# Source0-md5:	7f1c462b4fbcc4a52aceaf1bf66de6d4
+Source0:	http://trac-hacks.org/changeset/latest/trachoursplugin?old_path=/&filename=trachoursplugin&format=zip#/trachoursplugin.zip
+# Source0-md5:	0c51648583b3c467ff91954591c08462
 URL:		http://trac-hacks.org/wiki/TracHoursPlugin
 BuildRequires:	python-devel
 BuildRequires:	unzip
@@ -31,6 +30,9 @@ cd %{trac_ver}
 %{__python} setup.py build
 %{__python} setup.py egg_info
 
+ver=$(awk '$1 == "Version:" {print $2}' *.egg-info/PKG-INFO)
+test "$ver" = %{version}
+
 %install
 rm -rf $RPM_BUILD_ROOT
 cd %{trac_ver}
@@ -45,20 +47,18 @@ cd %{trac_ver}
 rm -rf $RPM_BUILD_ROOT
 
 %post
+trac-enableplugin "trachours.*"
+
 if [ "$1" = "1" ]; then
 	%banner -e %{name} <<-'EOF'
-	To enable the %{plugin} plugin, add to conf/trac.ini:
 
-	[components]
-	%{plugin}.* = enabled
-
-	Add users to the group TICKET_ADD_HOURS.
-
+	Add users to the group TICKET_ADD_HOURS so they can fill hours.
 	You will need to run trac-admin <env> upgrade in order to create the correct database tables.
 EOF
 fi
 
 %files
 %defattr(644,root,root,755)
+%doc %{trac_ver}/README.txt
 %{py_sitescriptdir}/%{plugin}
 %{py_sitescriptdir}/*-*.egg-info
