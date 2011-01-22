@@ -10,6 +10,9 @@ Source0:	http://trac-hacks.org/changeset/latest/trachoursplugin?old_path=/&filen
 # Source0-md5:	0c51648583b3c467ff91954591c08462
 URL:		http://trac-hacks.org/wiki/TracHoursPlugin
 BuildRequires:	python-devel
+BuildRequires:	python-modules
+BuildRequires:	python-setuptools
+BuildRequires:	rpm-pythonprov
 BuildRequires:	unzip
 Requires:	python >= 1:2.4
 Requires:	python-dateutil >= 1.3-4
